@@ -6,6 +6,31 @@ Built with Node.js, TypeScript, and [`@modelcontextprotocol/sdk`](https://github
 
 ---
 
+## Installation
+
+```bash
+npm install @codemill-solutions/yuki-mcp
+```
+
+Then add it to your MCP host configuration (e.g. `claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "yuki": {
+      "command": "node",
+      "args": ["node_modules/@codemill-solutions/yuki-mcp/dist/index.js"],
+      "env": {
+        "YUKI_API_KEY": "your-api-key-here",
+        "YUKI_DOMAIN_ID": "your-administration-guid-here"
+      }
+    }
+  }
+}
+```
+
+---
+
 ## Prerequisites
 
 - Node.js 20+
