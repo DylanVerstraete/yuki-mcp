@@ -33,11 +33,17 @@ export function registerRelationTools(
     {
       description:
         "Search for Yuki relations (customers/suppliers) by name, code, VAT number, or other fields. " +
-        "Returns up to 100 contacts per page with IDs, codes, names, and contact details.",
+        "Returns up to 100 contacts per page with IDs, codes, names, and contact details. " +
+        "Omit searchValue (or pass an empty string) to retrieve all contacts.",
       inputSchema: {
         searchValue: z
           .string()
-          .describe("The value to search for (e.g. company name, relation code)"),
+          .optional()
+          .default("")
+          .describe(
+            "The value to search for (e.g. company name, relation code). " +
+            "Omit or pass an empty string to retrieve all contacts (subject to Yuki API support)."
+          ),
         searchOption: z
           .enum([
             "All",
