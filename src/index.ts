@@ -16,6 +16,9 @@ import { registerJournalWriteTools } from './tools/transactions.js';
 import { registerContactWriteTools } from './tools/relations.js';
 import { registerDocumentTools } from './tools/documents.js';
 
+// Backoffice tools
+import { registerBackofficeTools } from './tools/backoffice.js';
+
 // ── Environment validation ────────────────────────────────────────────────────
 
 const apiKey = process.env['YUKI_API_KEY'];
@@ -52,6 +55,9 @@ registerJournalWriteTools(server, yukiClient);
 registerContactWriteTools(server, yukiClient);
 registerDocumentTools(server, yukiClient);
 
+// ── Backoffice tools ──────────────────────────────────────────────────────────
+registerBackofficeTools(server, yukiClient);
+
 // ── Start ─────────────────────────────────────────────────────────────────────
 
 const transport = new StdioServerTransport();
@@ -60,6 +66,6 @@ await server.connect(transport);
 
 // Log startup info to stderr only (stdout is reserved for JSON-RPC)
 process.stderr.write(
-  `[yuki-mcp] Server started — 14 tools registered. ` +
+  `[yuki-mcp] Server started — 16 tools registered. ` +
     `Domain ID: ${domainId || '(none — run get_administrations to discover)'}\n`,
 );

@@ -140,6 +140,13 @@ Add to your MCP host configuration (e.g. `claude_desktop_config.json`):
 | `upload_document_from_path` | `filePath`, `fileName?`, `folder?`, `amount?` | Upload a PDF from a local file path. Reads and encodes the file internally — preferred over `upload_document` when the file is available on disk. Validates that the file exists and is a valid PDF before uploading. |
 | `get_document_folders` | — | List all archive folders available in the administration. |
 
+### Backoffice
+
+| Tool | Key parameters | Description |
+|------|----------------|-------------|
+| `get_workflow` | `administrationId?` | Retrieve backoffice workflow items — documents that could not be processed automatically and are awaiting review by the accountant. |
+| `get_outstanding_questions` | `administrationId?` | Retrieve outstanding questions raised by the accountant that require a response before the related documents can be processed. |
+
 ---
 
 ## Testing
@@ -190,7 +197,8 @@ src/
     │                       # process_sales_invoice, process_purchase_invoice
     ├── transactions.ts     # get_transactions, get_transaction_details, process_journal
     ├── accounting.ts       # get_gl_accounts
-    └── documents.ts        # upload_document, upload_document_from_path, get_document_folders
+    ├── documents.ts        # upload_document, upload_document_from_path, get_document_folders
+    └── backoffice.ts       # get_workflow, get_outstanding_questions
 
 scripts/
 └── test-agent.ts         # Agent test harness (Claude + MCP client loop)
